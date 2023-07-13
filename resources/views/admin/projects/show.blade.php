@@ -21,6 +21,14 @@
  		    	<div class="d-flex flex-column justify-content-center ps-4 pe-5 my-4 w-50 border-start">
                     <p class="mb-2"><strong>Domain:</strong><span class="text-body-secondary"> {{ $project->domain }}</span></p>
                     <p class="mb-2"><strong>Stack:</strong><span class="text-body-secondary"> {{ $project->stack }}</span></p>
+                    <p class="mb-2">
+                        <strong>Technologies:</strong>
+                        @forelse ($project->technologies as $item)
+                            <span class="text-body-secondary">{{$item->name}} </span>
+                        @empty
+                            <span class="text-body-secondary">N/A</span>
+                        @endforelse
+                    </p>
                     <p class="mb-2"><strong>Type:</strong><span class="text-body-secondary"> {{ $project->type->name ?? 'N/A' }}</span></p>
                     <p class="mb-2"><strong>Project Abstract: </strong><span class="text-body-secondary">{{ $project->description }}</span></p>
                     <p class="mb-2"><strong>Release Date:</strong><span class="text-body-secondary"> {{ Str::limit($project->date, 10, '') }}</span></p>

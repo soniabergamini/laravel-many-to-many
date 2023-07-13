@@ -80,7 +80,17 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
 
-            <input type="submit" class="btn btn-primary form-control mb-4" value="ADD PROJECT">
+            @foreach ($technologies as $i => $item)
+            <div class="form-check">
+                <input type="checkbox" name="technologies[]" id="technologies{{$i}}" value="{{$item->id}}" class="form-check-input">
+                <label for="technologies{{$i}}" class="form-check-label">{{$item->name}}</label>
+            </div>
+            @endforeach
+            @error('technologies')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+
+            <input type="submit" class="btn btn-primary form-control my-4" value="ADD PROJECT">
 
         </form>
     </div>

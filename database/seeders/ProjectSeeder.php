@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 use GuzzleHttp\Handler\Proxy;
 
@@ -20,6 +21,8 @@ class ProjectSeeder extends Seeder
     {
         $stacksData = config('store');
         $types = Type::all(["id"]);
+        $technologies = Technology::all(["id"]);
+
 
         for ($i=0; $i < 10; $i++) {
             $newProject = new Project();
@@ -28,6 +31,12 @@ class ProjectSeeder extends Seeder
             $newProject->description = $faker->paragraphs(4, true);
             $newProject->image = "https://picsum.photos/id/" . rand(0, 1084) . "/200";
             $newProject->link = $faker->url();
+
+            $techNum = rand(0,5);
+            $projectTech = [];
+            for ($x=0; $x < $techNum; $x++) {
+                $projectTech[] = $technologies->random()->id;
+            }
 
             $stacks = '';
             for ($c = 0; $c < 4; $c++) {
@@ -42,6 +51,7 @@ class ProjectSeeder extends Seeder
             $newProject->type_id = $types->random()->id;
             // $newProject->stack = $faker->randomElements(['HTML', 'CSS', 'JS', 'PHP', 'LARAVEL', 'VITE', 'VUEJS'], 4);
             $newProject->save();
+            $newProject->technologies()->attach(array_unique($projectTech));
         }
     }
 }

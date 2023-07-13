@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 
 class ProjectController extends Controller
@@ -31,7 +32,8 @@ class ProjectController extends Controller
     {
         $allStack = Project::select('stack')->distinct()->get();
         $types = Type::all();
-        return view("admin.projects.create", compact('allStack', 'types'));
+        $technologies = Technology::all();
+        return view("admin.projects.create", compact('allStack', 'types', 'technologies'));
     }
 
     /**
@@ -46,6 +48,7 @@ class ProjectController extends Controller
         $newProject = new Project();
         $newProject->fill($data);
         $newProject->save();
+        $newProject->technologies()->attach($data['technologies']);
         return redirect()->route('admin.projects.show', $newProject->id);
     }
 
@@ -70,7 +73,8 @@ class ProjectController extends Controller
     {
         $allStack = Project::select('stack')->distinct()->get();
         $types = Type::all();
-        return view('admin.projects.edit', compact('project', 'allStack', 'types'));
+        $technologies = Technology::all();
+        return view('admin.projects.edit', compact('project', 'allStack', 'types', 'technologies'));
     }
 
     /**
@@ -85,6 +89,7 @@ class ProjectController extends Controller
         $data = $request->validated();
         $project->fill($data);
         $project->update();
+        $project->technologies()->sync($data['technologies']);
         return redirect()->route('admin.projects.show', $project);
     }
 
