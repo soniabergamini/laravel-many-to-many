@@ -18,7 +18,7 @@
         </div>
         @endif
 
-        <form action="{{ route("admin.projects.store") }}" method="post" class="needs-validation">
+        <form action="{{ route("admin.projects.store") }}" method="post" class="needs-validation post-crud">
             @csrf
 
             <label for="name">Name</label>
