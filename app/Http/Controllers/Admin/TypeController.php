@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\StoreTechnologyRequest;
-use App\Http\Requests\UpdateTechnologyRequest;
-use App\Models\Technology;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreTypeRequest;
+use App\Http\Requests\UpdateTypeRequest;
+use App\Models\Type;
 
-class TechnologyController extends Controller
+class TypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +32,10 @@ class TechnologyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreTechnologyRequest  $request
+     * @param  \App\Http\Requests\StoreTypeRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTechnologyRequest $request)
+    public function store(StoreTypeRequest $request)
     {
         //
     }
@@ -42,10 +43,10 @@ class TechnologyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Technology  $technology
+     * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function show(Technology $technology)
+    public function show(Type $type)
     {
         //
     }
@@ -53,10 +54,10 @@ class TechnologyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Technology  $technology
+     * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function edit(Technology $technology)
+    public function edit(Type $type)
     {
         //
     }
@@ -64,11 +65,11 @@ class TechnologyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateTechnologyRequest  $request
-     * @param  \App\Models\Technology  $technology
+     * @param  \App\Http\Requests\UpdateTypeRequest  $request
+     * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTechnologyRequest $request, Technology $technology)
+    public function update(UpdateTypeRequest $request, Type $type)
     {
         //
     }
@@ -76,10 +77,10 @@ class TechnologyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Technology  $technology
+     * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Technology $technology)
+    public function destroy(Type $type)
     {
         //
     }
