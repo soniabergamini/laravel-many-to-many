@@ -9,6 +9,7 @@ use App\Models\Project;
 use App\Models\Technology;
 use App\Models\Type;
 use GuzzleHttp\Handler\Proxy;
+use Illuminate\Support\Facades\Schema;
 
 class ProjectSeeder extends Seeder
 {
@@ -19,6 +20,10 @@ class ProjectSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
+        Schema::disableForeignKeyConstraints();
+        Project::truncate();
+        Schema::enableForeignKeyConstraints();
+
         $stacksData = config('store');
         $types = Type::all(["id"]);
         $technologies = Technology::all(["id"]);
