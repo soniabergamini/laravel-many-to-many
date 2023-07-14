@@ -29,7 +29,8 @@ class ProjectSeeder extends Seeder
             $newProject->name = $faker->word();
             $newProject->domain = $faker->domainName();
             $newProject->description = $faker->paragraphs(4, true);
-            $newProject->image = "https://picsum.photos/id/" . rand(0, 1084) . "/200";
+            // $newProject->image = "https://picsum.photos/id/" . rand(0, 1084) . "/200";
+            $newProject->image = $faker->image();
             $newProject->link = $faker->url();
 
             $techNum = rand(0,5);

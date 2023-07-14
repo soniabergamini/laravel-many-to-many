@@ -18,7 +18,7 @@
         </div>
         @endif
 
-        <form action="{{ route("admin.projects.store") }}" method="post" class="needs-validation post-crud">
+        <form action="{{ route("admin.projects.store") }}" method="post" class="needs-validation post-crud" enctype="multipart/form-data">
             @csrf
 
             <label for="name">Name</label>
@@ -45,8 +45,16 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
 
-            <label for="image">URL Image</label>
+            {{-- INPUT FOR URL IMAGE --}}
+            {{-- <label for="image">URL Image</label>
             <input type="text" name="image" id="image" value="{{ old("image") }}" class="form-control mb-4 @error('image') is-invalid @enderror">
+            @error('image')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror --}}
+
+            {{-- INPUT FOR UPLOAD IMAGE --}}
+            <label for="image">Upload Image</label>
+            <input type="file" name="image" id="image" value="{{ old("image") }}" class="form-control mb-4 @error('image') is-invalid @enderror">
             @error('image')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror

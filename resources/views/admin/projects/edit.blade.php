@@ -18,7 +18,7 @@
         </div>
         @endif
 
-        <form action="{{ route("admin.projects.update", $project) }}" method="post" class="needs-validation post-crud">
+        <form action="{{ route("admin.projects.update", $project) }}" method="post" class="needs-validation post-crud" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 

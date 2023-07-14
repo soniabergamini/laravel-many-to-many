@@ -18,7 +18,8 @@
  			    <div class="card h-100">
  			    	<div class="card-header p-0 d-flex justify-content-center position-relative">
                         <a href="{{ route('admin.projects.show', $item) }}" class="w-100">
-                            <img src="{{ $item->image }}" alt="{{ $item->name }}" class="img-fluid object-cover w-100 rounded-top">
+                            <img src="{{ asset('/storage') .'/' . $item->image }}" class="img-fluid object-cover w-100 rounded-top">
+                            {{-- <img src="{{ $item->image }}" alt="{{ $item->name }}" class="img-fluid object-cover w-100 rounded-top"> --}}
                         </a>
                         <a href="{{ route('admin.projects.show', $item) }}" class="details bg-dark bg-gradient bg-opacity-50 position-absolute link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover top-0 start-0 rounded py-1 px-2"><i class="fa-solid fa-circle-info me-1"></i>Details</a>
                         <a href="{{ $item->link }}" class="details bg-dark bg-gradient bg-opacity-50 position-absolute link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover top-0 end-0 rounded py-1 px-2">Visit Site <i class="fa-solid fa-square-arrow-up-right ms-1"></i></a>

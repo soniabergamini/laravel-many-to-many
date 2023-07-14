@@ -14,7 +14,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // Add Picsum to Faker
+        $this->app->register('App\Providers\FakerServiceProvider');
     }
 
     /**

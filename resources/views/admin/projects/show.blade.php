@@ -14,7 +14,8 @@
                 </div>
  		    	<div class="d-flex align-items-center ps-3 pe-4 py-4 w-50">
                     <div class="w-100 position-relative">
-                        <img src="{{ $project->image }}" alt="{{ $project->name }}" class="img-fluid object-cover rounded w-100">
+                        <img src="{{ asset('/storage') .'/' . $project->image }}" alt="{{ $project->name }}" class="img-fluid object-cover rounded w-100">
+                        {{-- <img src="{{ $project->image }}" alt="{{ $project->name }}" class="img-fluid object-cover rounded w-100"> --}}
                         <a href="{{ $project->link }}" class="fs-6 bg-dark bg-gradient bg-opacity-50 position-absolute link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover top-0 end-0 rounded py-1 px-2">Visit Site <i class="fa-solid fa-square-arrow-up-right ms-1"></i></a>
                     </div>
                 </div>
