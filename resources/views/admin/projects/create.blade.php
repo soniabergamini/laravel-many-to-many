@@ -54,10 +54,23 @@
 
             {{-- INPUT FOR UPLOAD IMAGE --}}
             <label for="image">Upload Image</label>
-            <input type="file" name="image" id="image" value="{{ old("image") }}" class="form-control mb-4 @error('image') is-invalid @enderror">
+            <div class="d-flex align-items-center p-2 mb-4 gap-2">
+                <img id="previewCreate" src="{{ asset('/storage') . '/placeholder/placeholder-img.png'}}" alt="img" width="50" height="50" class="object-fit-cover rounded">
+            <input type="file" name="image" id="imgCreate" value="{{ old("image") }}" class="form-control @error('image') is-invalid @enderror">
+            </div>
             @error('image')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
+
+            {{-- JS UPLOAD IMG PREVIEW --}}
+            <script>
+                imgCreate.onchange = evt => {
+                    const [file] = imgCreate.files
+                    if (file) {
+                        previewCreate.src = URL.createObjectURL(file)
+                    }
+                }
+            </script>
 
             <label for="date">Release Date</label>
             <input type="date" name="date" id="date" value="{{ old("date") }}" class="form-control mb-4 @error('date') is-invalid @enderror">

@@ -48,11 +48,15 @@ class ProjectController extends Controller
         $data = $request->validated();
         if($request->hasFile('image')) {
             $data['image'] = Storage::put('uploads', $data['image']);
+        } else {
+            $data['image'] = 'placeholder/placeholder-img.png';
         }
         $newProject = new Project();
         $newProject->fill($data);
         $newProject->save();
-        $newProject->technologies()->attach($data['technologies']);
+        if ($request['technologies']) {
+            $newProject->technologies()->attach($data['technologies']);
+        }
         return redirect()->route('admin.projects.show', $newProject->id);
     }
 
@@ -91,9 +95,14 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         $data = $request->validated();
+        if ($request->hasFile('image')) {
+            $data['image'] = Storage::put('uploads', $data['image']);
+        }
         $project->fill($data);
         $project->update();
-        $project->technologies()->sync($data['technologies']);
+        if ($request['technologies']) {
+            $project->technologies()->sync($data['technologies']);
+        }
         return redirect()->route('admin.projects.show', $project);
     }
 

@@ -46,11 +46,36 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
 
-            <label for="image">URL Image</label>
-            <input type="text" name="image" id="image" value="{{ old("image") ?? $project->image }}" class="form-control mb-4 @error('image') is-invalid @enderror">
+            {{-- INPUT FOR IMAGE UPLOAD --}}
+            <label for="image">Upload Image</label>
+            <div class="d-flex align-items-center p-2 mb-4 gap-2">
+                @if ($project->image)
+                    <img id="preview" src="{{ asset('/storage') .'/' . $project->image }}" alt="{{$project->name}}" width="50" height="50" class="object-fit-cover rounded">
+                @else
+                    <img id="preview" src="{{ asset('/storage') . '/placeholder/placeholder-img.png'}}" alt="img" width="50" height="50" class="object-fit-cover rounded">
+                @endif
+                <input type="file" name="image" id="imgUp" class="form-control @error('image') is-invalid @enderror">
+            </div>
             @error('image')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
+
+            {{-- JS UPLOAD IMG PREVIEW --}}
+            <script>
+                imgUp.onchange = evt => {
+                    const [file] = imgUp.files
+                    if (file) {
+                        preview.src = URL.createObjectURL(file)
+                    }
+                }
+            </script>
+
+            {{-- INPUT FOR URL IMAGE --}}
+            {{-- <label for="image">URL Image</label>
+            <input type="text" name="image" id="image" value="{{ old("image") ?? $project->image }}" class="form-control mb-4 @error('image') is-invalid @enderror">
+            @error('image')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror --}}
 
             <label for="date">Release Date</label>
             <input type="date" name="date" id="date" value="{{ old("date") ?? $project->date }}" class="form-control mb-4 @error('date') is-invalid @enderror">
