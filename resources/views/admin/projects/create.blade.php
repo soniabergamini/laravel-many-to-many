@@ -93,7 +93,7 @@
             <select id="type_id" name="type_id" class="form-select mb-4" aria-label="Select Type">
                 <option value="" @selected(!old('type_id')) disabled>Select Type</option>
                 @foreach ($types as $item)
-                    <option value="{{ $item->id }}" @selected(old('type_id')==$item->type)>{{ $item->name }}</option>
+                    <option value="{{ $item->id }}" @selected(old('type_id')==$item->id)>{{ $item->name }}</option>
                 @endforeach
             </select>
             @error('type_id')
@@ -102,7 +102,7 @@
 
             @foreach ($technologies as $i => $item)
             <div class="form-check">
-                <input type="checkbox" name="technologies[]" id="technologies{{$i}}" value="{{$item->id}}" class="form-check-input">
+                <input type="checkbox" name="technologies[]" id="technologies{{$i}}" value="{{$item->id}}" class="form-check-input" @checked(in_array($item->id, old('technologies') ?? []))>
                 <label for="technologies{{$i}}" class="form-check-label">{{$item->name}}</label>
             </div>
             @endforeach

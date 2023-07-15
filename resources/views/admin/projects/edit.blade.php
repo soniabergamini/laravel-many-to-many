@@ -85,9 +85,9 @@
 
             <label for="stack">Stack</label>
             <select id="stack" name="stack" class="form-select mb-4" aria-label="Select">
-                <option value="" @selected(!old('stack')) disabled hidden>Select Stack</option>
+                <option value="" @selected(!old('stack', $project)) disabled hidden>Select Stack</option>
                 @foreach ($allStack as $item)
-                    <option value="{{ $item->stack }}" @selected(old('stack')==$item->stack)>{{ $item->stack }}</option>
+                    <option value="{{ $item->stack }}" @selected(old('stack', $project) == $item->id)>{{ $item->stack }}</option>
                 @endforeach
             </select>
             @error('stack')
@@ -96,9 +96,9 @@
 
             <label for="type_id">Type</label>
             <select id="type_id" name="type_id" class="form-select mb-4" aria-label="Select Type">
-                <option value="" @selected(!old('type_id')) disabled hidden>Select Type</option>
+                <option value="" @selected(!old('type_id', $project)) disabled>Select Type</option>
                 @foreach ($types as $item)
-                    <option value="{{ $item->id }}" @selected(old('type_id')==$item->type)>{{ $item->name }}</option>
+                    <option value="{{ $item->id }}" @selected(old('type_id', $project) == $item->id)>{{ $item->name }}</option>
                 @endforeach
             </select>
             @error('type_id')
@@ -107,7 +107,7 @@
 
             @foreach ($technologies as $i => $item)
             <div class="form-check">
-                <input type="checkbox" name="technologies[]" id="technologies{{$i}}" value="{{$item->id}}" class="form-check-input">
+                <input type="checkbox" name="technologies[]" id="technologies{{$i}}" value="{{$item->id}}" class="form-check-input" @checked(in_array($item->id, old('technologies') ?? $project->technologies->pluck('id')->toArray()))>
                 <label for="technologies{{$i}}" class="form-check-label">{{$item->name}}</label>
             </div>
             @endforeach
